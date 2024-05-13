@@ -122,11 +122,6 @@ pub fn build(b: *std.Build) !void {
             .desc = "Illustrates simple screen manager based on a state machine",
         },
         .{
-            .name = "basic_window",
-            .path = "examples/core/basic_window.zig",
-            .desc = "Creates a basic window with text",
-        },
-        .{
             .name = "input_keys",
             .path = "examples/core/input_keys.zig",
             .desc = "Simple keyboard input",
@@ -176,6 +171,12 @@ pub fn build(b: *std.Build) !void {
             .path = "examples/textures/sprite_anim.zig",
             .desc = "Animate a sprite",
         },
+        .{
+            .name = "main",
+            .path = "src/main.zig",
+            .desc = "Main Build",
+        },
+
         // .{
         //     .name = "models_loading",
         //     .path = "examples/models/models_loading.zig",
@@ -254,7 +255,7 @@ pub fn build(b: *std.Build) !void {
 
             const run_cmd = b.addRunArtifact(exe);
             const run_step = b.step(ex.name, ex.desc);
-            
+
             run_step.dependOn(&run_cmd.step);
             examples_step.dependOn(&exe.step);
         }
